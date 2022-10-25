@@ -2,6 +2,12 @@ const fs = require('fs');
 
 let usuarios = JSON.parse(fs.readFileSync('controllers/usuario/usuarios.db'));
 
+function pegarUsuarioLogado(token) {
+    let usuario = usuarios.filter(cadaUm => cadaUm.token === token);
+
+    return usuario[0] || false
+}
+
 //listar todos os usuarios GET /usuarios
 function listar() {
     //como nao estamos usando banco de dados, fomos obrigados e coagidos a filtrar manualmente as informações
@@ -65,4 +71,5 @@ module.exports = {
     listar,
     buscar,
     auth,
+    pegarUsuarioLogado,
 };
