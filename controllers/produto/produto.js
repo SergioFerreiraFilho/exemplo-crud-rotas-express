@@ -1,27 +1,22 @@
-let produtos = [
-    {
-        "id": 1,
-        "nome": "produto 1"
-    },
-    {
-        "id": 2,
-        "nome": "produto 2"
-    }
-]
 
-function listar(){
-    return produtos;
+let fs = require('fs');
+
+function listar() {
+    return fs.readFileSync('controllers/produto/produtos.chuchu');
 }
-function criar(produto){
+
+function criar(produto) {
+    let produtos = listar()
+    console.log(typeof produtos)
     produtos.push(produto);
     return produtos
 }
 
-function atualizar(){
+function atualizar() {
     return "Atualizar produto"
 }
 
-function deletar(produto_id){
+function deletar(produto_id) {
     produtos = produtos.filter((prod) => prod.id != produto_id)
     return JSON.stringify(produtos)
 }
