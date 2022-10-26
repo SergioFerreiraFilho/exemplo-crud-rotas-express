@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const usuarioController = require('./usuario');
 
-
-router.get('/me', (req,res) => {
+router.get('/me', (req, res) => {
     let token = req.headers.authorization;
 
     res.send(

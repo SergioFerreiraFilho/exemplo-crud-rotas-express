@@ -5,7 +5,7 @@ let usuarios = JSON.parse(fs.readFileSync('controllers/usuario/usuarios.db'));
 function pegarUsuarioLogado(token) {
     let usuario = usuarios.filter(cadaUm => cadaUm.token === token);
 
-    return usuario[0] || false
+    return usuario[0] || false; //se retornar false é pq nao tem usuario logado com esse token
 }
 
 //listar todos os usuarios GET /usuarios

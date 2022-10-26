@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const controller = require('./carrinho')
+const controller = require('./carrinho');
 
-router.get('/carrinho', (req,res) => {
+router.get('/carrinho', (req, res) => {
     let token = req.headers.authorization;
 
     res.send(

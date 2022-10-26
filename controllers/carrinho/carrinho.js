@@ -1,15 +1,18 @@
-const {pegarUsuarioLogado} = require('../usuario/usuario')
-const fs = require('fs')
+const {pegarUsuarioLogado} = require('../usuario/usuario');
+const fs = require('fs');
 
-let carrinho = fs.readFileSync(__dirname + "/carrinho.json")
+let carrinho = JSON.parse(fs.readFileSync(__dirname + "/carrinho.json"));
 
 function buscarCarrinhoDoUsuario(token) {
     if (!token) {
-        return false
+        return false;
     }
 
     let usuario = pegarUsuarioLogado(token);
-    return JSON.stringify(carrinho)
+
+    let resultado = carrinho.filter(cadaItem => cadaItem.usuario === usuario.id);
+
+    return JSON.stringify(resultado);
 }
 
 module.exports = {
