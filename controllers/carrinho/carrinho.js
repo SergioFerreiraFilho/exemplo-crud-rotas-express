@@ -15,6 +15,11 @@ function buscarCarrinhoDoUsuario(token) {
     return JSON.stringify(resultado);
 }
 
+function addAoCart(token, dados) {
+    return "funciona"
+}
+
 module.exports = {
     buscarCarrinhoDoUsuario,
+    addAoCart
 }
