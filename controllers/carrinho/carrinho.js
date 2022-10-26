@@ -22,17 +22,42 @@ function addAoCart(token, dados) {
 
     let usuario = pegarUsuarioLogado(token)
 
+    let identificadores = carrinho.map(item => item.id)
+    
+    let novoId = Math.max(...identificadores) +1
+
     let novoItem = {
-        id:"x",
+        id:novoId,
         produto: dados.produto,
         quantidade: dados.quantidade,
         usuario: usuario.id
     }
 
+    carrinho.push(novoItem)
+
+    fs.writeFileSync(__dirname+ '/carrinho.json', JSON.stringify(carrinho));
+
     return novoItem
+}
+
+function excluirItemDoCarrinho(token,id){
+    if (!token) {
+        return 401;
+    }
+
+    let usuario = pegarUsuarioLogado(token);
+
+    let produtos = carrinho.filter(cadaItem => {
+        return cadaItem.id !== parseInt(id);
+    })
+
+    fs.writeFileSync(__dirname + '/carrinho', JSON.stringify(produtos))
+
+    return 204; 
 }
 
 module.exports = {
     buscarCarrinhoDoUsuario,
-    addAoCart
+    addAoCart,
+    excluirItemDoCarrinho,
 }
