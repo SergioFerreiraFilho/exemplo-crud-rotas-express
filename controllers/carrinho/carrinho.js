@@ -16,7 +16,20 @@ function buscarCarrinhoDoUsuario(token) {
 }
 
 function addAoCart(token, dados) {
-    return "funciona"
+    if (!token) {
+        return false
+    }
+
+    let usuario = pegarUsuarioLogado(token)
+
+    let novoItem = {
+        id:"x",
+        produto: dados.produto,
+        quantidade: dados.quantidade,
+        usuario: usuario.id
+    }
+
+    return novoItem
 }
 
 module.exports = {
